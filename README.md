@@ -17,22 +17,25 @@ git clone https://github.com/yourusername/computational-modeling-diabetic-heart-
 
 ## Git commands
 Overall Process
-1. Make changes to code locally and save them /  Add files to local repo
-2. Open command prompt and navigate to local repo 
-3. Check what modifications have been made, what is or is not being tracked
+1. Run the command ```bash
+git pull
+```
+2. Make changes to code locally and save them /  Add files to local repo
+3. Open command prompt and navigate to local repo 
+4. Check what modifications have been made, what is or is not being tracked
 ```bash
 git status
 ```
-3. Add the changes by either adding a filename or all changes
+5. Add the changes by either adding a filename or all changes
 ```bash
 git add filename   # Stage a specific file
 git add .          # Stage all changes
 ```
-4. Commit the changes with a message
+6. Commit the changes with a message
 ```bash
 git commit -m "Brief description of the changes made"
 ```
-5. Push the changes to your branch NOT main
+7. Push the changes to your branch NOT main
 ```bash
 git push origin <NAME_OF_BRANCH>
 ```
