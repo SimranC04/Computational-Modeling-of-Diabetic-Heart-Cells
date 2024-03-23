@@ -13,16 +13,60 @@ Welcome to the repository for the "Computational Modeling of Diabetic Heart Cell
 - [Contributing](#contributing)
 - [License](#license)
 
+```markdown
+# Using the Repository with Git Commands
 
-## Cloning repository
-1. Clone the Repository: Open Git CMD, terminal or command prompt and navigate to the directory where you want to store the project.
-2. You can navigate to directory by using <cd> <path to that folder>
-3. Once within the folder you want to store the repository use the following command
- <git clone https://github.com/yourusername/computational-modeling-diabetic-heart-cells.git>
-4. 
+## Cloning the Repository
 
+To clone the repository onto your local machine:
+```bash
+git clone https://github.com/yourusername/computational-modeling-diabetic-heart-cells.git
+```
+Replace `yourusername` with your GitHub username.
 
-## Adding to the repository
+## Navigating into the Repository
+
+Navigate into the repository directory:
+```bash
+cd computational-modeling-diabetic-heart-cells
+```
+
+## Checking Repository Status
+
+To check the current status of the repository:
+```bash
+git status
+```
+
+## Adding Changes
+
+To stage changes for commit:
+```bash
+git add filename   # Stage a specific file
+git add .          # Stage all changes
+```
+
+## Committing Changes
+
+Commit staged changes with a descriptive message:
+```bash
+git commit -m "Brief description of the changes made"
+```
+
+## Pushing Changes to GitHub
+
+Push committed changes to GitHub:
+```bash
+git push origin main
+```
+Replace `main` with your branch name if different.
+
+## Pulling Changes from GitHub
+
+Incorporate changes from GitHub into your local repository:
+```bash
+git pull origin main
+```
 
 
 ## Contributors
