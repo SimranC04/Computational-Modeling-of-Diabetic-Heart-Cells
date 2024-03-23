@@ -14,9 +14,16 @@ Welcome to the repository for the "Computational Modeling of Diabetic Heart Cell
 - [License](#license)
 
 
-## Installation
+## Cloning repository
+1. Clone the Repository: Open Git CMD, terminal or command prompt and navigate to the directory where you want to store the project.
+2. You can navigate to directory by using <cd> <path to that folder>
+3. Once within the folder you want to store the repository use the following command
+ <git clone https://github.com/yourusername/computational-modeling-diabetic-heart-cells.git>
+4. 
 
-1. Clone the repository:
+
+## Adding to the repository
+
 
 ## Contributors
 - Angel Lai
