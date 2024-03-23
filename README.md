@@ -47,7 +47,7 @@ Or if you want to pull locally your branch you are working on before you made ch
 git pull origin <NAME_OF_BRANCH>
 ```
 
-### Merge Requsts
+### Pull Requsts
 Once you have pushed to your own branch you can create a pr for changes to merge them into main. 
 
 
