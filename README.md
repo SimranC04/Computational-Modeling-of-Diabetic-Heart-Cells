@@ -48,7 +48,7 @@ git pull origin <NAME_OF_BRANCH>
 ```
 
 ### Merge Requsts
-Once you have pushed to your own branch you can create a pr 
+Once you have pushed to your own branch you can create a pr for changes to merge them into main. 
 
 
 ## Contributors
