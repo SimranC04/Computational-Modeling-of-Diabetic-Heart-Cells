@@ -10,7 +10,6 @@ Welcome to the repository for the "Computational Modeling of Diabetic Heart Cell
 
 - [Introduction](#introduction)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -18,4 +17,8 @@ Welcome to the repository for the "Computational Modeling of Diabetic Heart Cell
 ## Installation
 
 1. Clone the repository:
+
+## Contributors
+- Angel Lai
+- Simran Chandradevan
 
