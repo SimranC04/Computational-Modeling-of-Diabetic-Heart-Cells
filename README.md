@@ -17,7 +17,8 @@ git clone https://github.com/yourusername/computational-modeling-diabetic-heart-
 
 ## Git commands
 Overall Process
-1. Run the command ```bash
+1. Run the command
+```bash
 git pull
 ```
 2. Make changes to code locally and save them /  Add files to local repo
