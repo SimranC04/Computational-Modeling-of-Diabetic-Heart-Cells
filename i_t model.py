@@ -66,6 +66,33 @@ def ds_slow_dt(t, s_slow, V):
 
 
 
+""" S o l v i n g   f r o m   t h e   p a p e r """
+
+# Initial values got these from the model
+r0 = 0.002191519
+s0 = 0.9842542
+s_slow0 = 0.6421196
+
+# Time span for 2 Hz (0 to 500 ms)
+t_span = (0, 500)
+t_eval = np.linspace(0, 500, 1001)
+
+# Solving the differential equations
+r_solution = solve_ivp(dr_dt, t_span, [r0], args=(V,), t_eval=t_eval)
+s_solution = solve_ivp(ds_dt, t_span, [s0], args=(V,), t_eval=t_eval)
+s_slow_solution = solve_ivp(ds_slow_dt, t_span, [s_slow0], args=(V,), t_eval=t_eval)
+
+# Extract the final steady-state values
+r_steady = r_solution.y[0][-1]
+s_steady = s_solution.y[0][-1]
+s_slow_steady = s_slow_solution.y[0][-1]
+
+# Calculating E_K using the Nernst equation
+E_K = R*T/F*np.log(K_o/K_i)
+
+# Calculating the current 
+i_t = g_t_endo*r_solution*(a_endo*s_solution+b_endo*s_slow_solution)*(V-E_K)
+
 
 
 
