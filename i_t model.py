@@ -30,7 +30,7 @@ V = -80.514
 
 
 # Membrane potential array from -60 mV to 60 mV
-V = np.linspace(-60, 60, 100)
+V = -60
 
 """ E q u a t i o n s   f r o m   t h e   p a p e r """
 
@@ -90,8 +90,10 @@ s_slow_steady = s_slow_solution.y[0][-1]
 # Calculating E_K using the Nernst equation
 E_K = R*T/F*np.log(K_o/K_i)
 
-# Calculating the current 
-i_t = g_t_endo*r_solution*(a_endo*s_solution+b_endo*s_slow_solution)*(V-E_K)
+# Compute I_t for both endocardial and epicardial cells over the range of voltages
+i_t = g_t_endo * r_steady * (a_endo * s_steady + b_endo * s_slow_steady) * (V - E_K)
+print(i_t)
+    
 
 
 
