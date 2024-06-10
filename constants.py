@@ -15,9 +15,9 @@ g_BCa = 3.24e-05
 g_BK = 13.8e-05
 
 #Nernst Stuff
-R = 8.314
-T = 310.15
-F = 96485
+R = 8314
+T = 295
+F = 96487
 
 # nernst 
 E_Na = (R * T / F) * np.log(Na_o / Na_i) * 1000
