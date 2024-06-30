@@ -24,9 +24,15 @@ g_f = 0.00145  # µS, Maximum conductance for I_f
 F = 96487.0  # C/mol, Faraday constant
 T = 295  # K, Absolute temperature
 R = 8314.0  # mJ/mol K, Ideal gas constant
-E_Na = (R * T / F) * np.log(Na_o / Na_i) * 1000
-E_K = (R * T / F) * np.log(K_o / K_i) * 1000
-E_CaL = (R * T / (2 * F)) * np.log(Ca_o / Ca_i) * 1000
+E_Na = 122.3711209712564  #E_Na = (R * T / F) * np.log(Na_o / Na_i) 
+E_K = 65.27963984166938 #E_K = (R * T / F) * np.log(K_o / K_i) 
+E_CaL =-82.61398354198526 #E_CaL = (R * T / (2 * F)) * np.log(Ca_o / Ca_i) 
+
+# nernst 
+E_Na = (R * T / F) * np.log(Na_o / Na_i) 
+E_K = (R * T / F) * np.log(K_o / K_i)
+E_CaL = (R * T / (2 * F)) * np.log(Ca_o / Ca_i) 
+print(E_CaL,E_Na,E_K)
 
 # Other parameteres
 I_NaK_max = 0.08  # nA, Maximum I_NaK current
