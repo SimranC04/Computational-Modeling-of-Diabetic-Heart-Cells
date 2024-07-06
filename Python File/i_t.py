@@ -15,12 +15,12 @@ def dr_dt(t, r, V):
     tau_r = 1 / (45.16 * np.exp(0.03577 * (V + 50)) + 98.9 * np.exp(-0.1 * (V + 38)))
     return (r_infinity - r) / tau_r
 
-def ds_dt(t, s, V,diabetes):
+def ds_dt(t, s, V):
     s_infinity = 1 / (1 + np.exp((V + 45.3) / 6.8841))
     tau_s_endo = 0.55 * np.exp(-((V + 70) / 25)**2) + 0.049
     return (s_infinity - s) / tau_s_endo
 
-def ds_slow_dt(t, s_slow, V, diabetes):
+def ds_slow_dt(t, s_slow, V):
     s_slow_infinity = 1 / (1 + np.exp((V + 45.3) / 6.8841))
     tau_s_slow_endo = 3.3 * np.exp(-((V + 70) / 30)**2) + 0.049
     return (s_slow_infinity - s_slow) / tau_s_slow_endo
@@ -44,10 +44,9 @@ def i_t_current(V,g_t,E_K,diabetes):
     # time values
     end_time = 20
     t_span = (0, end_time)  
-    t_eval = np.linspace(0, end_time, 20) 
+    t_eval = np.linspace(0, end_time, 1000) 
 
     # Solving
-
     r_solution = solve_ivp(dr_dt, t_span, [r0], args=(V,), t_eval=t_eval, method='RK45')
     s_solution = solve_ivp(ds_dt, t_span, [s0], args=(V,), t_eval=t_eval, method='RK45')
     s_slow_solution = solve_ivp(ds_slow_dt, t_span, [s_slow0], args=(V,), t_eval=t_eval, method='RK45')
@@ -64,9 +63,7 @@ def i_t_current(V,g_t,E_K,diabetes):
 
 
 V_range = np.linspace(-60, 60, 20)
-"""
-Healthy
-"""
+
 diabetes = False
 
 # Initialising arrays 
@@ -89,13 +86,13 @@ for V in V_range:
     i_t_peak =  i_t_current(V,g_t,E_K,diabetes)
     i_t_peak_diabetic_values.append(i_t_peak)
 
+# Plotting
+fig, axs = plt.subplots(1, 2, figsize=(16, 6), sharey=True)
+
 # Normalising values to get current density
 C = 100e-6 #microfarads
 normalised_healthy_i_t = np.array(i_t_peak_values) * 1e-3 / C
 normalised_diabetic_i_t = np.array(i_t_peak_diabetic_values) * 1e-3 / C
-
-# Plotting
-fig, axs = plt.subplots(1, 2, figsize=(16, 6), sharey=True)
 
 #  healthy I_t values
 axs[0].plot(V_range, normalised_healthy_i_t, label='Healthy', color='blue')
