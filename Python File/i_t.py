@@ -4,38 +4,39 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from constants import  R, T, F,g_t,E_K,K_o,K_i
 
 
-
-def dr_dt(t, r, V):
+def dr_dt_healthy(t, r, V):
     r_infinity = 1 / (1 + np.exp((V + 10.6) / -11.42))
     tau_r = 1 / (45.16 * np.exp(0.03577 * (V + 50)) + 98.9 * np.exp(-0.1 * (V + 38)))
     return (r_infinity - r) / tau_r
 
-def ds_dt(t, s, V):
+def ds_dt_healthy(t, s, V):
     s_infinity = 1 / (1 + np.exp((V + 45.3) / 6.8841))
     tau_s_endo = 0.55 * np.exp(-((V + 70) / 25)**2) + 0.049
     return (s_infinity - s) / tau_s_endo
 
-def ds_slow_dt(t, s_slow, V):
+def ds_slow_dt_healthy(t, s_slow, V):
     s_slow_infinity = 1 / (1 + np.exp((V + 45.3) / 6.8841))
     tau_s_slow_endo = 3.3 * np.exp(-((V + 70) / 30)**2) + 0.049
     return (s_slow_infinity - s_slow) / tau_s_slow_endo
 
 
+def ds_dt_diabetes(t, s, V):
+    s_infinity = 1 / (1 + np.exp((V + 45.3) / 6.8841))
+    tau_s_endo = 0.35 * np.exp(-((V + 70) / 15)**2) + 0.035
+    return (s_infinity - s) / tau_s_endo
+
+def ds_slow_dt_diabetes(t, s_slow, V):
+    s_slow_infinity = 1 / (1 + np.exp((V + 45.3) / 6.8841))
+    tau_s_slow_endo = 3.7 * np.exp(-((V + 70) / 30)**2) + 0.035
+    return (s_slow_infinity - s_slow) / tau_s_slow_endo
+
+
 def i_t_current(V,g_t,E_K,diabetes):
     
-    # Diabetic adjustments
-    if diabetes:
-        g_t = 0.68 * g_t
-        b = 0.31
-    else:
-        b = 0.114
-    a = 1 - b
-
     # Initial values
     r0 = 0.002191519
     s0 = 0.9842542
@@ -47,10 +48,19 @@ def i_t_current(V,g_t,E_K,diabetes):
     t_eval = np.linspace(0, end_time, 1000) 
 
     # Solving
-    r_solution = solve_ivp(dr_dt, t_span, [r0], args=(V,), t_eval=t_eval, method='RK45')
-    s_solution = solve_ivp(ds_dt, t_span, [s0], args=(V,), t_eval=t_eval, method='RK45')
-    s_slow_solution = solve_ivp(ds_slow_dt, t_span, [s_slow0], args=(V,), t_eval=t_eval, method='RK45')
+    if diabetes is True:
+        g_t = 0.68 * g_t
+        b = 0.31
+        r_solution = solve_ivp(dr_dt_healthy, t_span, [r0], args=(V,), t_eval=t_eval, method='RK45')
+        s_solution = solve_ivp(ds_dt_healthy, t_span, [s0], args=(V,), t_eval=t_eval, method='RK45')
+        s_slow_solution = solve_ivp(ds_slow_dt_healthy, t_span, [s_slow0], args=(V,), t_eval=t_eval, method='RK45')
+    else:
+        b = 0.114
+        r_solution = solve_ivp(dr_dt_healthy, t_span, [r0], args=(V,), t_eval=t_eval, method='RK45')
+        s_solution = solve_ivp(ds_dt_diabetes, t_span, [s0], args=(V,), t_eval=t_eval, method='RK45')
+        s_slow_solution = solve_ivp(ds_slow_dt_diabetes, t_span, [s_slow0], args=(V,), t_eval=t_eval, method='RK45')
 
+    a = 1 - b
     # Extract the values at each time step
     r_values = r_solution.y[0]
     s_values = s_solution.y[0]
@@ -63,6 +73,10 @@ def i_t_current(V,g_t,E_K,diabetes):
 
 
 V_range = np.linspace(-60, 60, 20)
+
+"""
+Diabetes 
+"""
 
 diabetes = False
 
