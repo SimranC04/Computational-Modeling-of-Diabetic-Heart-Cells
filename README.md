@@ -3,7 +3,7 @@
 
 Welcome to the repository for the "Computational Modeling of Diabetic Heart Cells" project. This project aims to develop computational models to simulate the behavior of heart cells under diabetic conditions. By understanding the cellular mechanisms involved in diabetic heart disease, we aim to provide insights into potential therapeutic strategies and interventions.
 
-## Initial Set up the Repository
+## 1.0 Initial Set up the Repository
 1. Open GitCmd, terminal or command prompt
 2. Navigate to the folder you want to set up the repo in using
 ```bash
@@ -14,7 +14,7 @@ cd whatever\the\path\is
 git clone https://github.com/yourusername/computational-modeling-diabetic-heart-cells.git
 ```
 
-## Git commands
+### 1.1 Git commands
 Overall Process
 1. Run the command
 ```bash
@@ -40,7 +40,7 @@ git commit -m "Brief description of the changes made"
 git push origin <NAME_OF_BRANCH>
 ```
 
-### Pulling Changes from GitHub
+### 1.2 Pulling Changes from GitHub
 Incorporate changes from GitHub into your local repository:
 ```bash
 git pull origin main
@@ -50,7 +50,7 @@ Or if you want to pull locally your branch you are working on before you made ch
 git pull origin <NAME_OF_BRANCH>
 ```
 
-### Pull Requsts
+### 1.3 Pull Requsts
 Once you have pushed to your own branch you can create a pr for changes to merge them into main. 
 
 
