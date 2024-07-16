@@ -1,6 +1,4 @@
 # Computational Modeling of Diabetic Heart Cells
-banana
-
 ## Introduction
 
 Welcome to the repository for the "Computational Modeling of Diabetic Heart Cells" project. This project aims to develop computational models to simulate the behavior of heart cells under diabetic conditions. By understanding the cellular mechanisms involved in diabetic heart disease, we aim to provide insights into potential therapeutic strategies and interventions.
